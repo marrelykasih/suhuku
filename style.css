@@ -1,0 +1,42 @@
+/* style.css */
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #1f2937; /* Latar belakang gelap agar area aplikasi menonjol */
+}
+
+.app-container {
+    width: 100%;
+    max-width: 400px;
+    height: 100vh;
+    max-height: 800px;
+    margin: 0 auto;
+    background: #f8fafc;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* =============================================
+   PERBAIKAN UTAMA:
+   Semua halaman di-hide dengan display: none.
+   Halaman yang aktif diubah jadi display: flex.
+   Tambahkan height: 100% agar konten mengisi
+   penuh container dan posisi absolute (tombol
+   di bawah) bekerja dengan benar.
+   ============================================= */
+.halaman {
+    display: none;
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.halaman.aktif {
+    display: flex;
+}
+
+.header-melengkung {
+    border-radius: 0 0 40px 40px;
+}

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suhuku - App Sederhana</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="flex items-center justify-center min-h-screen">
+
+    <div class="app-container bg-white">
+
+        <!-- HALAMAN LOGIN -->
+        <div id="halaman-login" class="halaman aktif p-6 relative">
+            <div class="text-center mt-10">
+                <h1 class="text-3xl font-bold text-gray-800">suhuku</h1>
+                <p class="text-xs text-green-700 mt-2">Asisten pintarmu untuk manajemen suhu. Mari mulai pantau sekitarmu.</p>
+            </div>
+
+            <div class="bg-green-50 border border-green-200 rounded-xl p-4 mt-8 relative overflow-hidden">
+                <h2 class="font-bold text-gray-800">Selamat datang kembali</h2>
+                <p class="text-xs text-gray-600 mt-1">Masuk untuk memantau suhu perangkatmu</p>
+                <svg class="absolute right-[-10px] top-[-10px] w-24 h-24 text-green-200 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                </svg>
+            </div>
+
+            <div class="mt-8 space-y-4">
+                <div>
+                    <label class="block text-sm font-semibold text-green-700 mb-1">Email</label>
+                    <input type="email" id="input-email" placeholder="nama@email.com" class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:border-green-600 text-sm">
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-green-700 mb-1">Password</label>
+                    <input type="password" id="input-password" placeholder="Minimal 8 Karakter" class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:border-green-600 text-sm">
+                </div>
+
+                <button onclick="pindahHalaman('halaman-wifi')" class="w-full bg-green-700 hover:bg-green-800 text-white font-semibold py-3 rounded-xl mt-6 transition duration-200">
+                    Masuk
+                </button>
+                <p class="text-center text-xs mt-4 text-gray-600">Belum punya akun? <span class="text-green-700 font-bold cursor-pointer">Daftar di sini</span></p>
+            </div>
+        </div>
+
+        <!-- HALAMAN WIFI -->
+        <div id="halaman-wifi" class="halaman p-6 relative">
+            <div class="flex flex-col items-center justify-center h-full">
+                <svg class="w-32 h-32 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"></path>
+                </svg>
+                <h2 class="text-xl font-bold text-gray-800 mt-6">sambungkan perangkat</h2>
+                <p class="text-sm text-green-700 mt-2 text-center">sebelum memulai sambungkan perangkat dengan menghubungkan wifi yang sama</p>
+            </div>
+            <div class="absolute bottom-10 w-full px-6 left-0">
+                <button onclick="simulasiKoneksi()" class="w-full bg-green-700 hover:bg-green-800 text-white font-semibold py-3 rounded-xl transition duration-200">
+                    sambungkan
+                </button>
+            </div>
+        </div>
+
+        <!-- HALAMAN BERHASIL -->
+        <div id="halaman-berhasil" class="halaman p-6 relative">
+            <div class="flex flex-col items-center justify-center h-full">
+                <div class="relative">
+                    <svg class="w-32 h-32 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"></path>
+                    </svg>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <svg class="w-16 h-16 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                    </div>
+                </div>
+                <h2 class="text-xl font-bold text-gray-800 mt-6">sambungan berhasil</h2>
+                <p class="text-sm text-green-700 mt-2 text-center">Memuat data sensor, mengalihkan ke menu utama...</p>
+            </div>
+        </div>
+
+        <!-- HALAMAN GAGAL -->
+        <div id="halaman-gagal" class="halaman p-6 relative">
+            <div class="flex flex-col items-center justify-center h-full">
+                <div class="relative">
+                    <svg class="w-32 h-32 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"></path>
+                    </svg>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <svg class="w-16 h-16 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </div>
+                </div>
+                <h2 class="text-xl font-bold text-gray-800 mt-6">sambungan gagal</h2>
+                <p class="text-sm text-green-700 mt-2 text-center">koneksi terputus, pastikan perangkat terhubung dengan wifi yang sama</p>
+            </div>
+            <div class="absolute bottom-10 w-full px-6 left-0">
+                <button onclick="pindahHalaman('halaman-wifi')" class="w-full bg-green-700 hover:bg-green-800 text-white font-semibold py-3 rounded-xl transition duration-200">
+                    coba lagi
+                </button>
+            </div>
+        </div>
+
+        <!-- HALAMAN HOME -->
+        <div id="halaman-home" class="halaman">
+            <div class="bg-green-700 text-white p-6 header-melengkung pb-12">
+                <div class="flex justify-between items-center mb-6">
+                    <div class="bg-white text-gray-400 rounded-full px-4 py-2 flex items-center w-3/4">
+                        <span class="text-sm">Pencarian...</span>
+                        <svg class="w-4 h-4 ml-auto text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </div>
+                    <div class="w-10 h-10 bg-pink-300 rounded-full border-2 border-white overflow-hidden">
+                        <div class="w-full h-full bg-pink-400 rounded-full"></div>
+                    </div>
+                </div>
+
+                <div class="flex justify-between items-end">
+                    <div>
+                        <p class="text-xl font-bold">Selamat datang!</p>
+                        <p class="text-lg">suhu hari ini .....</p>
+                    </div>
+                    <div class="bg-white rounded-2xl p-4 shadow-lg text-center min-w-[90px]">
+                        <h1 id="suhu-utama" class="text-4xl font-bold text-green-900">--</h1>
+                        <span class="text-gray-500 text-xs font-bold">°C</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-6 mt-[-20px]">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-xl font-bold text-green-700">riwayat suhu</h3>
+                    <p class="text-xs font-bold text-gray-800">Update dalam 10s</p>
+                </div>
+                <div class="bg-white rounded-xl border border-gray-100 p-2 shadow-sm">
+                    <canvas id="grafikSuhu"></canvas>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Script diletakkan paling bawah agar DOM sudah siap -->
+    <script src="script.js"></script>
+</body>
+</html>
