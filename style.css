@@ -2,7 +2,7 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: #1f2937; /* Latar belakang gelap agar area aplikasi menonjol */
+    background-color: #1f2937;
 }
 
 .app-container {
@@ -14,17 +14,10 @@ body {
     background: #f8fafc;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
 }
 
-/* =============================================
-   PERBAIKAN UTAMA:
-   Semua halaman di-hide dengan display: none.
-   Halaman yang aktif diubah jadi display: flex.
-   Tambahkan height: 100% agar konten mengisi
-   penuh container dan posisi absolute (tombol
-   di bawah) bekerja dengan benar.
-   ============================================= */
+/* --- Halaman dasar --- */
 .halaman {
     display: none;
     height: 100%;
@@ -37,6 +30,73 @@ body {
     display: flex;
 }
 
+.halaman,
+#halaman-utama {
+    display: none;
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.halaman.aktif,
+#halaman-utama.aktif {
+    display: flex;
+}
+
+/* --- Konten tab harus flex-col dan bisa scroll --- */
+.tab-konten {
+    flex-direction: column;
+    overflow-y: auto;
+    flex: 1;
+}
+
+/* --- Bottom nav fix --- */
+.bottom-nav {
+    position: relative;
+    z-index: 10;
+    flex-shrink: 0;
+    height: 64px;
+}
+
+/* --- Header melengkung --- */
 .header-melengkung {
-    border-radius: 0 0 40px 40px;
+    border-radius: 0 0 36px 36px;
+}
+
+/* --- Nav button aktif --- */
+.nav-btn {
+    color: #9ca3af;
+}
+
+.nav-btn.aktif-nav {
+    color: #15803d;
+}
+
+.nav-btn.aktif-nav span {
+    font-weight: 700;
+}
+
+/* --- Home FAB button --- */
+.home-fab {
+    transition: transform 0.2s;
+}
+
+.nav-btn:hover .home-fab {
+    transform: scale(1.08);
+}
+
+/* --- Modal overlay --- */
+.modal-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-overlay.hidden {
+    display: none;
 }
