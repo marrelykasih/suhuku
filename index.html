@@ -28,6 +28,63 @@
         .card { background: white; border-radius: 16px; border: 1px solid #f1f5f9; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
         input[type=text], input[type=email], input[type=password] { outline: none; }
         input:focus { border-color: #15803d !important; }
+
+        .device-container{
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          padding: 20px;
+        }
+
+        .device-card {
+          background-color: #bbf7d0;
+          border: 1px solid #1f2937;
+          border-radius: 15px;
+          padding: 20px;
+          width: 250px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+        
+        }
+
+        .device-card img {
+          width: 150px;
+          height: 150px;
+          object-fit: cover;
+          border-radius: 8px;
+          margin-bottom: 15px;
+        }
+
+        .device-card h3 {
+          margin-top: 0 0 10px 0;
+          color:#1f2937;
+          font-size: 1.4rem;
+        }
+
+        .device-card p {
+          color:#14532d;
+          font-size: 0.95rem;
+          margin: 0 0 20px 0;
+          line-height: 1.4;
+          flex-grow: 1; 
+        }
+
+      .select-btn{
+        background-color: #3b82f6;
+        color: #ffffff;
+        padding: 10px 20px;
+        font-size: 1rem;
+        font-weight: bold;
+        cursor: pointer;
+        width: 100%;
+    
+      }
+
+      .select-btn:hover{
+        background-color: #15803d;
+      }
     </style>
 </head>
 <body>
@@ -185,7 +242,19 @@
             <div style="padding:20px;flex:1;overflow-y:auto;">
                 <div id="list-perangkat" style="display:flex;flex-direction:column;gap:12px;padding-bottom:80px;"></div>
             </div>
+
+            <div class="device-container">
+              <div class="device-card">
+                <img src="logo.jpg" alt="suhu">
+                <h3>suhu ruang tamu</h3>
+                <p> ruang tamu tengah </p>
+                <button class="select-btn">hidupkan</button>
+              </div>
+            </div>
         </div>
+
+        <!-- TAB   -->
+
 
         <!-- TAB PROFIL -->
         <div id="tab-profil" class="tab-konten">
